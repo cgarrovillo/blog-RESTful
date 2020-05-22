@@ -41,23 +41,31 @@ public class BlogController {
         return data.findByTitleContainingOrContentContaining(title, content);
     }
 
+//    @PostMapping("/blog")
+//    public Blog create(@RequestBody Map<String, String> body) {
+//        int id = Integer.parseInt(body.get("id"));
+//        String title = body.get("title");
+//        String content = body.get("content");
+//        return data.save(new Blog(id, title, content));
+//    }
     @PostMapping("/blog")
-    public Blog create(@RequestBody Map<String, String> body) {
-        int id = Integer.parseInt(body.get("id"));
-        String title = body.get("title");
-        String content = body.get("content");
-        return data.save(new Blog(id, title, content));
+    public Blog create(@RequestBody Blog newBlog) {
+        return data.save(newBlog);
     }
 
+//    @PostMapping("/blog/{id}")
+//    public Blog update(@RequestBody(required = false) Map<String, String> body, @PathVariable(required = true) String id) {
+//        int blogId = Integer.parseInt(id);
+//        Blog old = data.findOne(blogId);
+//        String title = body.get("title");
+//        String content = body.get("content");
+//        old.setTitle(title);
+//        old.setContent(content);
+//        return data.save(old);
+//    }
     @PostMapping("/blog/{id}")
-    public Blog update(@RequestBody Map<String, String> body, @PathVariable String id) {
-        int blogId = Integer.parseInt(id);
-        Blog old = data.findOne(blogId);
-        String title = body.get("title");
-        String content = body.get("content");
-        old.setTitle(title);
-        old.setContent(content);
-        return data.save(old);
+    public Blog update(@RequestBody Blog updatedBlog, @PathVariable int id) {
+        return data.findOne(id)
     }
 
     @DeleteMapping("/blog/{id}")

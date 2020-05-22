@@ -10,6 +10,8 @@ public class Blog {
     private int id;
     @Column( name = "title") //needed if column name is different than attribute name
     private String title;
+
+    @Column(nullable = true)
     private String content;
 
     public Blog() {  }
